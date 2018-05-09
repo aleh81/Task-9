@@ -21,7 +21,9 @@ namespace Task9.UI
 		{
 			try
 			{
-				FileHelper.SaveFile(TxbTextFile.Text);
+				//FileHelper.SaveFileDialog(TxbTextFile.Text);
+				//FileHelper.SaveFile(FileHelper.DefaultFilePath, "MyName is Oleg");
+				FileHelper.SaveFile("", "Its cannot save");
 			}
 			catch (Exception exception)
 			{
