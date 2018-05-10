@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-
 
 namespace Task9.BLL.Helpers
 {
@@ -40,21 +34,24 @@ namespace Task9.BLL.Helpers
 
 			if (saveDlg.ShowDialog() == DialogResult.OK)
 			{
-				var sw = new StreamWriter(saveDlg.FileName);
-				try
-				{
-					sw.Write(text);
-				}
-				finally
-				{
-					sw.Close();
-				}
+				SaveFile(text, saveDlg);
 			}
 		}
 
-		public static void SaveFile(string path, string text)
+		private static void SaveFile(string text, FileDialog saveDlg)
 		{
-			var sw = new StreamWriter(path);
+			var sourceFile = new FileStream(
+				saveDlg.FileName,
+				FileMode.OpenOrCreate,
+				FileAccess.Write);
+
+            Writer(sourceFile, text);
+		}
+
+		private static void Writer(Stream sourceFile, string text)
+		{
+			var sw = new StreamWriter(sourceFile);
+
 			try
 			{
 				sw.Write(text);
@@ -62,6 +59,7 @@ namespace Task9.BLL.Helpers
 			finally
 			{
 				sw.Close();
+				sourceFile.Close();
 			}
 		}
 	}
