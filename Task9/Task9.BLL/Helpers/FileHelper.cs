@@ -45,7 +45,7 @@ namespace Task9.BLL.Helpers
 				FileMode.OpenOrCreate,
 				FileAccess.Write);
 
-            Writer(sourceFile, text);
+			Writer(sourceFile, text);
 		}
 
 		private static void Writer(Stream sourceFile, string text)
