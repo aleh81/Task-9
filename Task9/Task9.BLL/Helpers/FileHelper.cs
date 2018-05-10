@@ -73,6 +73,7 @@ namespace Task9.BLL.Helpers
 				InitialDirectory = DefaultDirectory,
 				Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
 			};
+
 			if (openDlg.ShowDialog() == DialogResult.OK)
 			{
 				return OpenFile(openDlg);
