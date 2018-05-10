@@ -1,8 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
-using System.Windows.Media;
-using Microsoft.Win32;
 using Task9.BLL.Helpers;
 
 namespace Task9.UI
@@ -22,8 +19,18 @@ namespace Task9.UI
 			try
 			{
 				FileHelper.SaveFileDialog(TxbTextFile.Text);
-				//FileHelper.SaveFile(FileHelper.DefaultFilePath, "MyName is Oleg");
-				//FileHelper.SaveFile("", "Its cannot save");
+			}
+			catch (Exception exception)
+			{
+				TxbTextFile.Text = "ERROR: " + exception.Message;
+			}
+		}
+
+		private void Open_File(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				TxbTextFile.Text =  FileHelper.OpenFileDialog();
 			}
 			catch (Exception exception)
 			{

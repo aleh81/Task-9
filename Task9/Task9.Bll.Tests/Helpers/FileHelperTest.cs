@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using Task9.BLL.Helpers;
 
@@ -23,12 +18,5 @@ namespace Task9.Bll.Tests.Helpers
 		{
 			FileHelper.SaveFileDialog(null);
 		}
-
-		[Test]
-		public void TestSaveFile()
-		{
-	
-		}
-
 	}
 }

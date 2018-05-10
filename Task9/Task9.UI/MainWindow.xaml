@@ -30,10 +30,8 @@
 					<MenuItem.Header>Save file</MenuItem.Header>
 				</MenuItem>
 				<Separator />
-				<MenuItem Header="Exit" ></MenuItem>
+				<MenuItem Header="Open file" Click="Open_File" ></MenuItem>
 			</MenuItem>
-			<MenuItem Header="Edit" ></MenuItem>
-			<MenuItem Header="View" ></MenuItem>
 		</Menu>
 	</Grid>
 </Window>

@@ -53,12 +53,55 @@ namespace Task9.BLL.Helpers
 			var sw = new StreamWriter(sourceFile);
 
 			try
-			{
+			{ 
 				sw.Write(text);
 			}
 			finally
 			{
 				sw.Close();
+				sourceFile.Close();
+			}
+		}
+
+		public static string OpenFileDialog()
+		{
+			var openDlg = new OpenFileDialog
+			{
+				Title = "Browse for a file to open",
+				FileName = DefaultFileName,
+				Multiselect = false,
+				InitialDirectory = DefaultDirectory,
+				Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+			};
+			if (openDlg.ShowDialog() == DialogResult.OK)
+			{
+				return OpenFile(openDlg);
+			}
+
+			return null;
+		}
+
+		private static string OpenFile(FileDialog openDlg)
+		{
+			var sourceFile = new FileStream(
+				openDlg.FileName,
+				FileMode.Open,
+				FileAccess.Read);
+
+			return Reader(sourceFile);
+		}
+
+		private static string Reader(Stream sourceFile)
+		{
+			var sr = new StreamReader(sourceFile);
+
+			try
+			{
+				return sr.ReadToEnd();
+			}
+			finally
+			{
+				sr.Close();
 				sourceFile.Close();
 			}
 		}
