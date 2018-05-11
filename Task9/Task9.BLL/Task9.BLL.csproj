@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Services\FileManager.cs" />
+    <Compile Include="Services\Interfaces\IFileManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

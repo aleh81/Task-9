@@ -1,22 +1,30 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
+using Task9.BLL.Services.Interfaces;
 
 namespace Task9.BLL.Helpers
 {
-	public static class FileHelper
+	public class FileHelper
 	{
 		public static string DefaultDirectory { get; } = Directory
 			.GetParent(Directory.GetCurrentDirectory())
 			.Parent?.FullName + "/";
 
-		public static string DefaultFileName { get; } =
+		public  string DefaultFileName { get; } =
 			"Data.txt";
 
-		public static string DefaultFilePath =>
+		public  string DefaultFilePath =>
 			DefaultDirectory + DefaultFileName;
 
-		public static void SaveFileDialog(string text)
+		private static IFileManager _filemanager;
+
+		public FileHelper(IFileManager manager)
+		{
+			_filemanager = manager;
+		}
+		public  void SaveFileDialog(string text)
 		{
 			if (text == null)
 			{
@@ -34,36 +42,12 @@ namespace Task9.BLL.Helpers
 
 			if (saveDlg.ShowDialog() == DialogResult.OK)
 			{
-				SaveFile(text, saveDlg);
+				_filemanager.SaveFile(text, saveDlg);
 			}
 		}
 
-		private static void SaveFile(string text, FileDialog saveDlg)
-		{
-			var sourceFile = new FileStream(
-				saveDlg.FileName,
-				FileMode.OpenOrCreate,
-				FileAccess.Write);
 
-			Writer(sourceFile, text);
-		}
-
-		private static void Writer(Stream sourceFile, string text)
-		{
-			var sw = new StreamWriter(sourceFile);
-
-			try
-			{ 
-				sw.Write(text);
-			}
-			finally
-			{
-				sw.Close();
-				sourceFile.Close();
-			}
-		}
-
-		public static string OpenFileDialog()
+		public  string OpenFileDialog()
 		{
 			var openDlg = new OpenFileDialog
 			{
@@ -76,35 +60,14 @@ namespace Task9.BLL.Helpers
 
 			if (openDlg.ShowDialog() == DialogResult.OK)
 			{
-				return OpenFile(openDlg);
+				return _filemanager.OpenFile(openDlg);
 			}
 
 			return null;
 		}
 
-		private static string OpenFile(FileDialog openDlg)
-		{
-			var sourceFile = new FileStream(
-				openDlg.FileName,
-				FileMode.Open,
-				FileAccess.Read);
 
-			return Reader(sourceFile);
-		}
 
-		private static string Reader(Stream sourceFile)
-		{
-			var sr = new StreamReader(sourceFile);
 
-			try
-			{
-				return sr.ReadToEnd();
-			}
-			finally
-			{
-				sr.Close();
-				sourceFile.Close();
-			}
-		}
 	}
 }

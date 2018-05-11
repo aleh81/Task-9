@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using Task9.BLL.Helpers;
+using Task9.BLL.Services;
+using Task9.BLL.Services.Interfaces;
 
 namespace Task9.UI
 {
@@ -9,16 +11,20 @@ namespace Task9.UI
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private readonly IFileManager _fileManager;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+			_fileManager = new FileManager();
 		}
 
 		private void Save_File(object sender, RoutedEventArgs e)
 		{
 			try
 			{
-				FileHelper.SaveFileDialog(TxbTextFile.Text);
+				var fileHelper = new FileHelper(_fileManager);
+				fileHelper.SaveFileDialog(TxbTextFile.Text);
 			}
 			catch (Exception exception)
 			{
@@ -30,7 +36,8 @@ namespace Task9.UI
 		{
 			try
 			{
-				TxbTextFile.Text =  FileHelper.OpenFileDialog();
+				var fileHelper = new FileHelper(_fileManager);
+				TxbTextFile.Text =  fileHelper.OpenFileDialog();
 			}
 			catch (Exception exception)
 			{
