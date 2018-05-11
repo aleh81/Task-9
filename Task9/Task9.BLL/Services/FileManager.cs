@@ -17,7 +17,7 @@ namespace Task9.BLL.Services
 			Writer(sourceFile, text);
 		}
 
-		public  void Writer(Stream sourceFile, string text)
+		public void Writer(Stream sourceFile, string text)
 		{
 			var sw = new StreamWriter(sourceFile);
 
@@ -42,7 +42,7 @@ namespace Task9.BLL.Services
 			return Reader(sourceFile);
 		}
 
-		public  string Reader(Stream sourceFile)
+		public string Reader(Stream sourceFile)
 		{
 			var sr = new StreamReader(sourceFile);
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 using System.Windows.Forms;
 using Task9.BLL.Services.Interfaces;
 
@@ -46,7 +45,6 @@ namespace Task9.BLL.Helpers
 			}
 		}
 
-
 		public  string OpenFileDialog()
 		{
 			var openDlg = new OpenFileDialog
@@ -65,9 +63,5 @@ namespace Task9.BLL.Helpers
 
 			return null;
 		}
-
-
-
-
 	}
 }

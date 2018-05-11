@@ -16,7 +16,7 @@ namespace Task9.Bll.Tests.Helpers
 
 		private void InitNullOfArgumentFor_SaveFileMethod()
 		{
-			FileHelper.SaveFileDialog(null);
+			//FileHelper.SaveFileDialog(null);
 		}
 	}
 }
