@@ -6,7 +6,6 @@ namespace Task9.BLL.Services
 {
 	public class FileManager: IFileManager
 	{
-
 		public void SaveFile(string text, FileDialog saveDlg)
 		{
 			var sourceFile = new FileStream(
