@@ -11,13 +11,13 @@ namespace Task9.BLL.Helpers
 			.GetParent(Directory.GetCurrentDirectory())
 			.Parent?.FullName + "/";
 
-		public  string DefaultFileName { get; } =
+		public string DefaultFileName { get; } =
 			"Data.txt";
 
 		public  string DefaultFilePath =>
 			DefaultDirectory + DefaultFileName;
 
-		private static IFileManager _filemanager;
+		private readonly IFileManager _filemanager;
 
 		public FileHelper(IFileManager manager)
 		{
@@ -44,7 +44,7 @@ namespace Task9.BLL.Helpers
 				_filemanager.SaveFile(text, saveDlg);
 			}
 		}
-
+		
 		public  string OpenFileDialog()
 		{
 			var openDlg = new OpenFileDialog
